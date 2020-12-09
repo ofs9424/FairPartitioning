@@ -94,4 +94,5 @@ At this point, I felt that I had attacked the problem from enough different angl
 ## References
 
 Aronov, B., & Hubard, A. (2010). Convex equipartitions of volume and surface area. http://arxiv.org/abs/1010.4611
+
 Nandakumar, R. & Rao, R. N. (2008). ‘Fair’ partitions of polygons-- an introduction. http://arxiv.org/abs/0812.2241
