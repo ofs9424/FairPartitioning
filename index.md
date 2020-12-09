@@ -18,9 +18,9 @@ I did not have any particular goals for this project; instead, I just wanted to 
 One immediate thing I noticed was that the approaches to this problem that I read had all been from a proof standpoint, trying to prove the conjecture for certain values of n. I wondered if there might be some value in creating an approximator for the problem; that is, an algorithm that starts with some unfair partition and tries to minimize the "unfairness".
 
 To measure unfairness, I chose to compute the variance in area and the variance in perimiter and sum them together, like so:
-```markdown
+
 Unfairness Score U = Σ(area - mean area)^2 + Σ(perimeter - mean perimeter)^2
-```
+
 For a perfectly fair partition, U = 0; for all other partitions, U > 0.
 
 Then, my plan was to choose one point on the partition and compute the derivative of U with respect to x and y, in order to locate a local minimum of U and move the point to that minimum. Repeated application of this process with different points would hopefully be able to find a state where no further progress could be made, or reach an asymptote. 
@@ -35,13 +35,11 @@ So I was unable to accomplish anything with this attempt.
 
 Even though it's not possible to use calculus to find the optimal location to move a point to, it is still possible to find a location that decreases U through trial and error. This ends up looking a lot like a hill climbing algorithm-- except with one important distance. With hill climbing, the number of possible mutations at any particular point are finite, so it is possible to determine with certainty that no improvement is possible and thus end the algorithm. With my iterative random approximator, I need to give it a particular point to end. I chose to measure this by counting iterations, where one iteration consists of:
 
-```markdown
-* Select one point in the partition
-* Choose a random new location for that point, within the bound created by the three points it is connected to
-* Check if the new point keeps all of the polygons in the partition convex
-* Check if the new point decreases unfairness
-* If both checks pass, update the partition with the new point
-```
+> * Select one point in the partition
+> * Choose a random new location for that point, within the bound created by the three points it is connected to
+> * Check if the new point keeps all of the polygons in the partition convex
+> * Check if the new point decreases unfairness
+> * If both checks pass, update the partition with the new point
 
 Here is an example of the algorithm in progress:
 ![Image](https://raw.githubusercontent.com/ofs9424/FairPartitioning/main/diagram%20animated.gif)
@@ -64,10 +62,10 @@ So this attempt ended up being a moderate success-- I achieved my goal, got some
 ## Attempt 3: Extending the Backtracking Algorithm
 
 After finishing my approximator, I figured I'd make at least some attempt to attack the problem theoretically. Nandakumar and Rao gave, as a demonstration, an unsuccessful attempt at a backtracking algorithm for the problem:
-```markdown
-* From the polygon, carve out a piece such that: the piece has the proper area, the piece has the same perimeter as all previous pieces, the piece is convex, and the remaining polygon is convex.
-* Repeat until the partition is complete or this is impossible; if it's impossible, backtrack and try a different piece.
-```
+
+> * From the polygon, carve out a piece such that: the piece has the proper area, the piece has the same perimeter as all previous pieces, the piece is convex, and the remaining polygon is convex.
+> * Repeat until the partition is complete or this is impossible; if it's impossible, backtrack and try a different piece.
+
 
 They showed that this algorithm fails on cases such as a 120-degree rotationally symmetric circle-like polygon for n = 3, where the partition is clearly three ways down the center like a pie, but the backtracking algorithm can't find that because it leaves the polygon non-convex after the first piece is carved.
 
@@ -76,12 +74,12 @@ I wondered if this method could be fixed by lifting the requirement that the pol
 ## Attempt 4: Extending the n = 4 Argument
 
 Nandakumar and Rao also proved n = 2 and n = 4. For n = 2, the proof goes as follows:
-```markdown
-* Let P be a point on the polygon's edge. For each such point, there is a unique Q such that PQ divides the polygon into two pieces of equal area.
-* Move P around the perimeter of the polygon. Eventually, P will equal the original Q, and Q will equal the original P.
-* When this happens, the two halves will have changed places, so if one half had a greater perimeter, now the other half does.
-* Since perimeter is continuous with respect to deformation of the polygon, there must exist a P-Q pair where the perimeters are equal.
-```
+
+> * Let P be a point on the polygon's edge. For each such point, there is a unique Q such that PQ divides the polygon into two pieces of equal area.
+> * Move P around the perimeter of the polygon. Eventually, P will equal the original Q, and Q will equal the original P.
+> * When this happens, the two halves will have changed places, so if one half had a greater perimeter, now the other half does.
+> * Since perimeter is continuous with respect to deformation of the polygon, there must exist a P-Q pair where the perimeters are equal.
+
 
 They then go on to show n = 4 by using a similar argument, except instead of just comparing the perimeters on each side, they run the n = 2 algorithm on each side and compare the resulting perimeters.
 
