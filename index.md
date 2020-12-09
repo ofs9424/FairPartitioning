@@ -90,3 +90,8 @@ The key is in the last step. The algorithm run on each side must be continuous w
 ## Conclusion
 
 At this point, I felt that I had attacked the problem from enough different angles. Although I did not really get any results (other than the vague suggestion from Attempt #2 that a solution might exist), I certainly understand the problem better, and I hope that everyone reading this can get a better understanding of the problem as well from my work.
+
+## References
+
+Aronov, B., & Hubard, A. (2010). Convex equipartitions of volume and surface area. http://arxiv.org/abs/1010.4611
+Nandakumar, R. & Rao, R. N. (2008). ‘Fair’ partitions of polygons-- an introduction. http://arxiv.org/abs/0812.2241
