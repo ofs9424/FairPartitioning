@@ -19,7 +19,7 @@ One immediate thing I noticed was that the approaches to this problem that I rea
 
 To measure unfairness, I chose to compute the variance in area and the variance in perimiter and sum them together, like so:
 
-Unfairness Score U = Σ(area - mean area)^2 + Σ(perimeter - mean perimeter)^2
+> Unfairness Score U = Σ(area - mean area)^2 + Σ(perimeter - mean perimeter)^2
 
 For a perfectly fair partition, U = 0; for all other partitions, U > 0.
 
@@ -86,5 +86,7 @@ They then go on to show n = 4 by using a similar argument, except instead of jus
 This immediately raises the question-- why can't this apply to all numbers? The problem's been solved for n = 3, but not n = 6, so why not just walk a P and Q around the perimeter and run the n = 3 algorithm on each side, comparing the results?
 
 The key is in the last step. The algorithm run on each side must be continuous with respect to deformation of the polygon. Nandakumar and Rao went to some lengths to show that the n = 2 case was continuous, allowing it to be used in the n = 4 proof. The n = 3 proof is much more complicated, and therefore I won't explain it here, but it is not known to be continuous. But at least I was able to determine that if the conjecture can be proved for n using a method that is continuous with respect to deformation of the polygon, then it is also true for 2n.
+
+## Conclusion
 
 At this point, I felt that I had attacked the problem from enough different angles. Although I did not really get any results (other than the vague suggestion from Attempt #2 that a solution might exist), I certainly understand the problem better, and I hope that everyone reading this can get a better understanding of the problem as well from my work.
